@@ -1,11 +1,6 @@
 package kr.ana.hyper.SNS;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -13,9 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 import aurelienribon.slidinglayout.SLAnimator;
 import aurelienribon.tweenengine.Tween;
@@ -34,15 +27,18 @@ public class AnimatedPanel extends JPanel {
 	private boolean hover = false;
 	private int borderThickness = 2;
 
+	private JButton b= new JButton("QWE");
+
 	public AnimatedPanel(String name){
-		setBackground(BG_COLOR);
-		setLayout(new BorderLayout());
+		setBG(BG_COLOR);
+		setLayout(new FlowLayout());
 
 		label.setForeground(FG_COLOR);
 		label.setFont(new Font("Sans", Font.BOLD, 90));
 		label.setVerticalAlignment(SwingConstants.CENTER);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setText(name);
+		add(b);
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -75,6 +71,7 @@ public class AnimatedPanel extends JPanel {
 	{
 		setBG(new Color(c));
 	}
+
 	public void setBG(String imgPath){
 		try {
 			bgImg = ImageIO.read(new File(imgPath));

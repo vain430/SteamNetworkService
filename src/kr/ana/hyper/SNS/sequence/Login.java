@@ -2,13 +2,18 @@ package kr.ana.hyper.SNS.sequence;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by 415 on 2014-11-24.
  */
 public class Login extends JPanel {
+
+    Parent parent;
     public Login(Parent p) {
         super();
+        parent=p;
         setLayout(null);
 
         JLabel userLabel = new JLabel("User");
@@ -31,8 +36,14 @@ public class Login extends JPanel {
         loginButton.setBounds(10, 80, 80, 25);
         add(loginButton);
 
-        JButton registerButton = new JButton("register");
+        JButton registerButton = new JButton("TESTETESTETETSTETSTET");
         registerButton.setBounds(180, 80, 80, 25);
         add(registerButton);
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JButton b = (JButton) e.getSource();
+                parent.update(_SeqID.SEQ_TIMELINE ,new TimeLine(parent));
+            }
+        });
     }
 }

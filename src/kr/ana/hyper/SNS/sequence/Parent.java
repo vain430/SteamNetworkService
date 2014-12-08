@@ -1,38 +1,55 @@
 package kr.ana.hyper.SNS.sequence;
 
+import kr.ana.hyper.SNS.CustomUIPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by 415 on 2014-11-24.
+ * Created by *KvOID on 2014-11-24.
+ * Email vain430@gmail.com
+ * Twitter @vain430
  */
-
 public class Parent {
 
-    _SeqID seqID;
+    public _SeqID seqID;
     private JPanel panel;
     private JFrame frame;
 
-    public void update(_SeqID s,JPanel next)
-    {
-        seqID=s;
-        frame.remove(panel);
-        panel=next;
-        frame.add(panel);
+    public JFrame getFrame(){return frame;};
+    public JPanel getPanel(){return panel;};
 
+    public void update(_SeqID s,boolean hide)
+    {
+        JPanel next;
+        seqID=s;
+        if(hide)
+            frame.setVisible(false);
+        switch(seqID)
+        {
+            case SEQ_LOGIN:
+                next= new Login(this);
+                break;
+            case SEQ_TIMELINE:
+                next= new TimeLine(this);
+                break;
+            default:
+                next= new JPanel();
+        }
+        panel=next;
+        frame.getContentPane().removeAll();
+        frame.printAll(frame.getGraphics());
+        frame.add(panel);
+        frame.setVisible(true);
     }
-    public _SeqID getValue(String s) {
-        return _SeqID.valueOf(s);
-    }
+
     public Parent()
     {
         seqID=_SeqID.SEQ_LOGIN;
-        panel = new Login(this);
-        frame= new JFrame("Name");
+        frame= new JFrame("SteamNetworkService");
+        panel = new TimeLine(this);
         frame.add(panel);
         frame.setVisible(true);
-        frame.setSize(800, 600);
-
     };
 
 }

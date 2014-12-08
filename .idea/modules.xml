@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SteamNetworkService.iml" filepath="$PROJECT_DIR$/SteamNetworkService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jtatto/jtatto.iml" filepath="$PROJECT_DIR$/jtatto/jtatto.iml" />
     </modules>
   </component>
 </project>
+

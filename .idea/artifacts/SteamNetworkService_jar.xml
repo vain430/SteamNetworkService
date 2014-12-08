@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SteamNetworkService:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SteamNetworkService_jar</output-path>
+    <root id="archive" name="SteamNetworkService.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="SteamNetworkService" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/jar/tween-engine-api/tween-engine-api-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/jar/tween-engine-api/tween-engine-api.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/JTattoo.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

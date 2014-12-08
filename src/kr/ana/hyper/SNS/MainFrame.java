@@ -5,7 +5,11 @@ import javax.swing.JFrame;
 import aurelienribon.slidinglayout.*;
 
 import java.awt.*;
-
+/**
+ * Created by *KvOID on 2014-11-24.
+ * Email vain430@gmail.com
+ * Twitter @vain430
+ */
 public class MainFrame extends JFrame {
 
 	private final SLPanel panel = new SLPanel();

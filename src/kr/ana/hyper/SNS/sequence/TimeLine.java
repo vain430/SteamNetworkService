@@ -2,6 +2,9 @@ package kr.ana.hyper.SNS.sequence;
 
 import kr.ana.hyper.SNS.SUtil;
 import kr.ana.hyper.SNS.SteamCrawler;
+import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.select.Elements;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -20,38 +23,53 @@ public class TimeLine extends JPanel {
 
     private Parent parent;
     private DefaultListModel timelistModel;
-    private JPanel rootPane;
     public TimeLine(Parent p) {
         super();
         parent = p;
-        setLayout(null);
+        setLayout(new BorderLayout());
         parent.getFrame().setSize(600,480);
         SUtil.moveToCenter(p);
 
         if(!SteamCrawler.isWorking()) {
             SteamCrawler.init();
         }
-        rootPane=new JPanel(new BorderLayout());
 
-
+        timelistModel = new DefaultListModel();
+    //    timelistModel.setSize(5);
+        initTimelinePanel();
         JList list = new JList(timelistModel);
         JScrollPane scrollPane = new JScrollPane(list);
 
+        Dimension d = list.getPreferredSize();
+        d.width = 180;
+        scrollPane.setPreferredSize(d);
         list.setCellRenderer(new TimelineRenderer(2));
+        add(scrollPane, BorderLayout.WEST);
 
-        rootPane.add(scrollPane, BorderLayout.EAST);
 
-        add(rootPane);
-        initTimelinePanel();
 
     }
 
     private void initTimelinePanel()
     {
+        Elements e=SteamCrawler.getBlotterBlocks();
+        for(int i = 0; i<e.size();i++) {
+            System.out.println("ParsingBlock :" + e.get(i).toString());
+            Element child=(Element)e.get(i).childNode(1);
+            if(child.classNames().contains("blotter_daily_rollup"))
+            {
+                continue;
+            }
+            else
+            {
 
+            }
 
+            addTimelineCell(SteamCrawler.getBlotterBlockName(e.get(i)), "c:\\qwe.jpg");
+        }
 
     }
+
     private void addTimelineCell(String text, String path) {
         TimelineCell cell = new TimelineCell(text, path);
         timelistModel.addElement(cell);
@@ -63,7 +81,7 @@ class TimelineCell {
     private final String imagePath;
     private Image image;
 
-    public TimelineCell(String title, String imagePath) {
+    public TimelineCell(String title, String imagePath ) {
         this.title = title;
         this.imagePath = imagePath;
     }
@@ -75,7 +93,7 @@ class TimelineCell {
 
     public Image getImage() {
         if (image == null) {
-            String pattern = "^(https?):\\/\\/"; // 맨앞이 http:// 또는 http://
+            String pattern = "^(https?):\\/\\/.*"; // 맨앞이 http:// 또는 http://
             if(imagePath.matches(pattern))
             {
                 try {
@@ -137,7 +155,22 @@ class TimelineRenderer extends JLabel implements ListCellRenderer {
         } else {
             setBackground(Color.white);
             setForeground(Color.black);
+
         }
+
+        Border outsideBorder;
+
+        if (isSelected) {
+            outsideBorder = UIManager.getBorder("List.focusCellHighlightBorder");
+        } else {
+            outsideBorder = NO_FOCUS_BORDER;
+        }
+
+        setBorder(BorderFactory.createCompoundBorder(outsideBorder, insideBorder));
+        setComponentOrientation(list.getComponentOrientation());
+        setEnabled(list.isEnabled());
+        setFont(list.getFont());
+
         return this;
     }
 

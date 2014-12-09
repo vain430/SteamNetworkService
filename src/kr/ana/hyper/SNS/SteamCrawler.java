@@ -2,6 +2,7 @@ package kr.ana.hyper.SNS;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.io.File;
 
@@ -27,7 +28,7 @@ public class SteamCrawler {
         try {
             File input = new File("qwe.html");
 
-            document = Jsoup.parse(input, "euc-kr", "http://steamcommunity.com/id/430vain/home/");
+            document = Jsoup.parse(input, "UTF-8", "http://steamcommunity.com/id/430vain/home/");
 
         }
         catch (Exception e)
@@ -37,9 +38,19 @@ public class SteamCrawler {
         isWork=true;
     }
 
-    public static Elements getBlotterBlock()
+    public static Elements getBlotterBlocks()
     {
-        return document.select(".blotter_day");
+        return document.select(".blotter_day .blotter_block");
     }
 
+    public static int getBlotterBlockCount() { return document.select(".blotter_day").size();}
+
+    public static String getBlotterBlockHead(Element BlotterBlock)
+    {
+        return BlotterBlock.select(".blotter_author_block div").get(2).text();
+    }
+    public static String getBlotterBlockName(Element BlotterBlock)
+    {
+        return BlotterBlock.select(".blotter_author_block div").get(3).text();
+    }
 }

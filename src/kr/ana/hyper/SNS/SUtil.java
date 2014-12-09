@@ -17,5 +17,10 @@ public class SUtil {
         int y = (int) ((dimension.getHeight() - p.getFrame().getHeight()) / 2);
         p.getFrame().setLocation(x, y);
     }
+    public static Dimension getWindowSize(Parent p)
+    {
+        return p.getFrame().getBounds().getSize();
+    }
+
 
 }

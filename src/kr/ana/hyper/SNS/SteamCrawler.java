@@ -3,6 +3,7 @@ package kr.ana.hyper.SNS;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import java.io.File;
 
@@ -45,12 +46,35 @@ public class SteamCrawler {
 
     public static int getBlotterBlockCount() { return document.select(".blotter_day").size();}
 
-    public static String getBlotterBlockHead(Element BlotterBlock)
+    public static Element getBlotterBlockHead(Element BlotterBlock)
     {
-        return BlotterBlock.select(".blotter_author_block div").get(2).text();
+        return BlotterBlock.select(".blotter_author_block").get(0);
     }
     public static String getBlotterBlockName(Element BlotterBlock)
     {
-        return BlotterBlock.select(".blotter_author_block div").get(3).text();
+        return BlotterBlock.select(".blotter_author_block div:not([class!=\"\"])").get(0).text();
     }
+    public static String getBlotterBlockActive(Element BlotterBlock)
+    {
+        return BlotterBlock.select(".blotter_author_block div:not([class!=\"\"])").get(1).text();
+    }
+    public static String getType(Element element)
+    {
+        for(int i =0;i<element.childNodeSize();i++)
+        {
+            Node child = element.childNode(i);
+            if(child instanceof Element)
+            {
+                Element e=(Element)child;
+                if(e.tagName() == "script")
+                    continue;
+                if(e.tagName() == "div")
+                {
+                    return e.className();
+                }
+            }
+        }
+        return "";
+    }
+
 }

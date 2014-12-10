@@ -41,7 +41,7 @@ public class TimeLine extends JPanel {
         JScrollPane scrollPane = new JScrollPane(list);
 
         Dimension d = list.getPreferredSize();
-        d.width = 180;
+        d.width = 250;
         scrollPane.setPreferredSize(d);
         list.setCellRenderer(new TimelineRenderer(2));
         add(scrollPane, BorderLayout.WEST);
@@ -53,19 +53,38 @@ public class TimeLine extends JPanel {
     private void initTimelinePanel()
     {
         Elements e=SteamCrawler.getBlotterBlocks();
+        String blockname="";
         for(int i = 0; i<e.size();i++) {
-            System.out.println("ParsingBlock :" + e.get(i).toString());
-            Element child=(Element)e.get(i).childNode(1);
-            if(child.classNames().contains("blotter_daily_rollup"))
+            Element block  = e.get(i);
+
+            String type = SteamCrawler.getType(block);
+
+            if(type.equals(""))
             {
                 continue;
             }
+            else if(type.equals("blotter_daily_rollup"))
+
+            {
+                continue;
+            }
+            else if(type.equals("blotter_userstatus")) //그냥 글이거나 그룹공지
+            {
+                //그냥 글은 통과 그룹은 따로 지정
+                if(block.children().first().className().contains("blotter_author_block"))
+                {
+
+                }
+                else
+                {
+                    continue;
+                }
+            }
             else
             {
-
+                blockname=SteamCrawler.getBlotterBlockName(block);
             }
-
-            addTimelineCell(SteamCrawler.getBlotterBlockName(e.get(i)), "c:\\qwe.jpg");
+            addTimelineCell(blockname, "qwe.jpeg");
         }
 
     }

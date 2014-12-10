@@ -1,6 +1,6 @@
 package kr.ana.hyper.SNS.sequence;
 
-import kr.ana.hyper.SNS.CustomUIPanel;
+import kr.ana.hyper.SNS.sequence.timeline.TimeLine;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -49,6 +49,7 @@ public class Parent {
     public Parent() {
         seqID=_SeqID.SEQ_LOGIN;
         frame= new JFrame("SteamNetworkService");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         File file = new File("main.png");
         Image image= null;

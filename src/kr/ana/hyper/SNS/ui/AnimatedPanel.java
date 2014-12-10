@@ -1,4 +1,4 @@
-package kr.ana.hyper.SNS;
+package kr.ana.hyper.SNS.ui;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;

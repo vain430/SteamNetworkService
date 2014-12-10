@@ -1,11 +1,9 @@
 package kr.ana.hyper.SNS.sequence;
 
-import kr.ana.hyper.SNS.CustomUIPanel;
 import kr.ana.hyper.SNS.SUtil;
 import kr.ana.hyper.SNS.SteamCrawler;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

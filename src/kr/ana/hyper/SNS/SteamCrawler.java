@@ -39,27 +39,35 @@ public class SteamCrawler {
         isWork=true;
     }
 
-    public static Elements getBlotterBlocks()
-    {
+    public static Elements getBlotterBlocks(){
         return document.select(".blotter_day .blotter_block");
     }
 
-    public static int getBlotterBlockCount() { return document.select(".blotter_day").size();}
+    public static Element getBlotterBlock(int index) {
+        return document.select(".blotter_day .blotter_block").get(index);
+    }
 
-    public static Element getBlotterBlockHead(Element BlotterBlock)
-    {
+    public static int getBlotterBlockCount() {
+        return document.select(".blotter_day").size();
+    }
+
+    public static Element getBlotterBlockHead(Element BlotterBlock){
         return BlotterBlock.select(".blotter_author_block").get(0);
     }
-    public static String getBlotterBlockName(Element BlotterBlock)
-    {
+
+    public static String getBlotterBlockName(Element BlotterBlock){
         return BlotterBlock.select(".blotter_author_block div:not([class!=\"\"])").get(0).text();
     }
-    public static String getBlotterBlockActive(Element BlotterBlock)
-    {
+
+    public static String getBlotterBlockActive(Element BlotterBlock){
         return BlotterBlock.select(".blotter_author_block div:not([class!=\"\"])").get(1).text();
     }
-    public static String getType(Element element)
-    {
+
+    public static String getBlotterBlockImgPath(Element BlotterBlock){
+        return BlotterBlock.select(".blotter_author_block div").select("img").get(0).attr("src");
+    }
+
+    public static String getType(Element element){
         for(int i =0;i<element.childNodeSize();i++)
         {
             Node child = element.childNode(i);

@@ -3,6 +3,7 @@ package kr.ana.hyper.SNS;
 import javax.swing.JFrame;
 
 import aurelienribon.slidinglayout.*;
+import kr.ana.hyper.SNS.ui.AnimatedPanel;
 
 import java.awt.*;
 /**

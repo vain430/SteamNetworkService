@@ -3,6 +3,8 @@ package kr.ana.hyper.SNS;
 import aurelienribon.slidinglayout.SLAnimator;
 import aurelienribon.tweenengine.Tween;
 import kr.ana.hyper.SNS.sequence.Parent;
+import kr.ana.hyper.SNS.ui.AnimatedPanel;
+
 import javax.swing.*;
 /**
  * Created by *KvOID on 2014-11-24.

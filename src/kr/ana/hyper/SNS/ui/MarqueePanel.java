@@ -17,9 +17,32 @@ public class MarqueePanel extends JPanel implements ActionListener {
     private static final int RATE = 12;
     private final Timer timer = new Timer(1000 / RATE, this);
     private final JLabel label = new JLabel();
-    private final String s;
+    private  final String s;
     private final int n;
     private int index;
+
+    public MarqueePanel()
+    {
+        this.s="";
+        this.n=0;
+    }
+
+    public void init(String s,int n)
+    {
+        if (s == null || n < 1) {
+            throw new IllegalArgumentException("Null string or n < 1");
+        }
+        StringBuilder sb = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+            sb.append(' ');
+        }
+        this.s = sb + s + sb;
+        this.n = n;
+        //   label.setFont(new Font("Serif", Font.ITALIC, 36));
+        label.setText(sb.toString());
+        this.add(label);
+    }
+
 
     public MarqueePanel(String s, int n) {
         if (s == null || n < 1) {

@@ -1,5 +1,7 @@
 package kr.ana.hyper.SNS.sequence.timeline;
 
+import kr.ana.hyper.SNS.ui.MarqueePanel;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
@@ -18,7 +20,7 @@ public class TimelineRenderer extends JPanel implements ListCellRenderer {
     private static final int LIST_CELL_ICON_SIZE = 36;
 
     private JLabel titleLabel;
-    private JLabel textLabel;
+    private MarqueePanel textLabel;
     private JLabel imageLabel;
 
     public TimelineRenderer() {
@@ -33,7 +35,7 @@ public class TimelineRenderer extends JPanel implements ListCellRenderer {
         insideBorder = BorderFactory.createEmptyBorder(topPadding, leftPadding, bottomPadding, rightPadding);
         setOpaque(true);
         titleLabel = new JLabel(" ");
-        textLabel = new JLabel(" ");
+        textLabel = new MarqueePanel(" ",2);
         imageLabel = new JLabel();
 
         Font f = new Font(null,Font.PLAIN,12);
@@ -85,7 +87,7 @@ public class TimelineRenderer extends JPanel implements ListCellRenderer {
             text = " ";
         }
         titleLabel.setText(title);
-        textLabel.setText(text);
+        textLabel.init(text, 12);
 
 
         //  imageLabel.setIcon(getImageIcon(entry, LIST_CELL_ICON_SIZE));
@@ -121,6 +123,7 @@ public class TimelineRenderer extends JPanel implements ListCellRenderer {
         setComponentOrientation(list.getComponentOrientation());
         setEnabled(list.isEnabled());
         setFont(list.getFont());
+        textLabel.start();
 
         return this;
     }

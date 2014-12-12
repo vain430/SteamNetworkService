@@ -10,7 +10,6 @@ import javax.swing.*;
 public class blotter_daily_rollup extends BaseCase {
     blotter_daily_rollup() {
         super();
-        panel = new JPanel();
     }
 
     public void addAsGroup(Element e) {

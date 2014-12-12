@@ -52,9 +52,8 @@ public class TimeLine extends JPanel {
         scrollPane.setPreferredSize(d);
         list.setCellRenderer(new TimelineRenderer(2));
 
-        right = new JPanel(new FlowLayout());
+        right=new JPanel(new BorderLayout());
         add(right, BorderLayout.CENTER);
-
         list.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -72,11 +71,17 @@ public class TimeLine extends JPanel {
                         }
                         System.out.print(selections[i] + "/" + selectionValues[i] + " ");
                         right.removeAll();
-                        right = ChangeRightPanel.run((TimelineCell) selectionValues[i],
-                                selections[i]);
+                        right.setOpaque(true);
+                        right.add(ChangeRightPanel.run((TimelineCell) selectionValues[i],
+                                selections[i]));
+                   //     parent.getFrame().pack();
+                   //     parent.getFrame().setLocationRelativeTo(null);
 
+                        right.revalidate();
+                        right.repaint();
                     }
                     System.out.println();
+
                 }
             }
         });

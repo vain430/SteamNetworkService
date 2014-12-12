@@ -36,6 +36,8 @@ public class TimelineRenderer extends JPanel implements ListCellRenderer {
         textLabel = new JLabel(" ");
         imageLabel = new JLabel();
 
+        Font f = new Font(null,Font.PLAIN,12);
+        textLabel.setFont(f);
 
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
         imageLabel.setVerticalAlignment(JLabel.CENTER);

@@ -97,7 +97,7 @@ public class TimeLine extends JPanel {
             if (type.equals("")) {
                 continue;
             } else if (type.equals("blotter_daily_rollup")) {
-                addTimelineCell("RollupActive", "ROR", "qwe.jpeg", i);
+                addTimelineCell("RollupActive", "여러롤업액티비티", "qwe.jpeg", i);
                 continue;
             } else if (type.equals("blotter_userstatus")) //그냥 글이거나 그룹공지
             {
@@ -105,7 +105,7 @@ public class TimeLine extends JPanel {
                 if (block.children().first().className().contains("blotter_author_block")) {
 
                 } else {
-                    addTimelineCell("GroupNotice", "qweqweqweqwe", "qwe.jpeg", i);
+                    addTimelineCell("GroupNotice", "그룹공지입니다.", "qwe.jpeg", i);
                     continue;
                 }
             } else {

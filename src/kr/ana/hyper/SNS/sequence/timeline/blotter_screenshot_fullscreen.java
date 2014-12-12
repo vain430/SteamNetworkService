@@ -14,6 +14,7 @@ public class blotter_screenshot_fullscreen extends BaseCase{
     @Override
     public void add(Element e)
     {
+        e.select("blotter_screenshot_image").select("img").get(0).attr("src");
 
     }
 }

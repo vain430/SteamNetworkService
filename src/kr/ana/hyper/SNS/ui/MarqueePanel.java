@@ -12,13 +12,12 @@ import java.awt.event.ActionListener;
  * Twitter @vain430
  */
 /** Side-scroll n characters of s. */
-public class MarqueePanel extends JPanel implements ActionListener {
+public class MarqueePanel extends JLabel implements ActionListener {
 
     private static final int RATE = 12;
     private final Timer timer = new Timer(1000 / RATE, this);
-    private final JLabel label = new JLabel();
-    private  final String s;
-    private final int n;
+    private   String s;
+    private  int n;
     private int index;
 
     public MarqueePanel()
@@ -27,7 +26,7 @@ public class MarqueePanel extends JPanel implements ActionListener {
         this.n=0;
     }
 
-    public void init(String s,int n)
+    public void setText(String s,int n)
     {
         if (s == null || n < 1) {
             throw new IllegalArgumentException("Null string or n < 1");
@@ -38,9 +37,7 @@ public class MarqueePanel extends JPanel implements ActionListener {
         }
         this.s = sb + s + sb;
         this.n = n;
-        //   label.setFont(new Font("Serif", Font.ITALIC, 36));
-        label.setText(sb.toString());
-        this.add(label);
+        setText(sb.toString());
     }
 
 
@@ -55,8 +52,7 @@ public class MarqueePanel extends JPanel implements ActionListener {
         this.s = sb + s + sb;
         this.n = n;
      //   label.setFont(new Font("Serif", Font.ITALIC, 36));
-        label.setText(sb.toString());
-        this.add(label);
+        setText(sb.toString());
     }
 
     public void start() {
@@ -73,6 +69,6 @@ public class MarqueePanel extends JPanel implements ActionListener {
         if (index > s.length() - n) {
             index = 0;
         }
-        label.setText(s.substring(index, index + n));
+        setText(s.substring(index, index + n));
     }
 }

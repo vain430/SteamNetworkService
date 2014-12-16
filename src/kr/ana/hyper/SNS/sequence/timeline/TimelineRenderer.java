@@ -20,7 +20,7 @@ public class TimelineRenderer extends JPanel implements ListCellRenderer {
     private static final int LIST_CELL_ICON_SIZE = 36;
 
     private JLabel titleLabel;
-    private MarqueePanel textLabel;
+    private JLabel textLabel;
     private JLabel imageLabel;
 
     public TimelineRenderer() {
@@ -35,11 +35,12 @@ public class TimelineRenderer extends JPanel implements ListCellRenderer {
         insideBorder = BorderFactory.createEmptyBorder(topPadding, leftPadding, bottomPadding, rightPadding);
         setOpaque(true);
         titleLabel = new JLabel(" ");
-        textLabel = new MarqueePanel(" ",2);
+        textLabel = new JLabel("T");
         imageLabel = new JLabel();
+     //   textLabel.start();
 
         Font f = new Font(null,Font.PLAIN,12);
-        textLabel.setFont(f);
+   //     textLabel.setFont(f);
 
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
         imageLabel.setVerticalAlignment(JLabel.CENTER);
@@ -87,8 +88,7 @@ public class TimelineRenderer extends JPanel implements ListCellRenderer {
             text = " ";
         }
         titleLabel.setText(title);
-        textLabel.init(text, 12);
-
+        textLabel.setText(text);
 
         //  imageLabel.setIcon(getImageIcon(entry, LIST_CELL_ICON_SIZE));
         imageLabel.setIcon(new ImageIcon(entry.getImage()));
@@ -123,7 +123,7 @@ public class TimelineRenderer extends JPanel implements ListCellRenderer {
         setComponentOrientation(list.getComponentOrientation());
         setEnabled(list.isEnabled());
         setFont(list.getFont());
-        textLabel.start();
+
 
         return this;
     }

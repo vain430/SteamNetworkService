@@ -48,7 +48,7 @@ public class TimeLine extends JPanel {
         JScrollPane scrollPane = new JScrollPane(list);
 
         Dimension d = list.getPreferredSize();
-        d.width = 435;
+        d.width = 322;
         scrollPane.setPreferredSize(d);
         list.setCellRenderer(new TimelineRenderer(2));
 
@@ -71,9 +71,9 @@ public class TimeLine extends JPanel {
                         }
                         System.out.print(selections[i] + "/" + selectionValues[i] + " ");
                         right.removeAll();
-                        right.setOpaque(true);
+
                         right.add(ChangeRightPanel.run((TimelineCell) selectionValues[i],
-                                selections[i]));
+                                selections[i]),BorderLayout.NORTH);
                    //     parent.getFrame().pack();
                    //     parent.getFrame().setLocationRelativeTo(null);
 
